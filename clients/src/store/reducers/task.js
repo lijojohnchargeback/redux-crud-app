@@ -23,11 +23,24 @@ const taskReducer = (state = initialValue, action) => {
         loading: false,
       };
     case TASK_BY_ID:
-      return {};
+      return { ...state, task: action.payload, loading: false };
     case TASK_EDIT:
-      return {};
+      const editTask = state.tasks.map((item) => {
+        return item._id === action.id ? { item, ...action.payload } : item;
+      });
+
+      return {
+        ...state,
+        tasks: editTask,
+        loading: false,
+      };
     case TASK_DELETE:
-      return {};
+      let taskDelete = state.tasks.filter((item) => item._id !== action.id);
+      return {
+        ...state,
+        tasks: taskDelete,
+        loading: false,
+      };
     default:
       return state;
   }

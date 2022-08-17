@@ -43,14 +43,16 @@ export const taskEdit = (id, formData) => async (dispatch) => {
   dispatch({
     type: TASK_EDIT,
     payload: res.data,
+    id: id,
   });
 };
 
 //delete
 export const taskDelete = (id) => async (dispatch) => {
-  const res = await axios.put(`http://localhost:8000/api/task/${id}`);
+  const res = await axios.delete(`http://localhost:8000/api/task/${id}`);
   dispatch({
     type: TASK_DELETE,
     payload: res.data,
+    id,
   });
 };

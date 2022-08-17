@@ -63,7 +63,7 @@ app.get("/api/task/:id", async (req, res) => {
 });
 
 //edit
-app.put("api/task/:id", async (req, res) => {
+app.put("/api/task/:id", async (req, res) => {
   try {
     const task = await Task.findOne({ _id: req.params.id });
     task.name = req.body.name;
